@@ -18,18 +18,22 @@ RUN apt-get update && \
     ruby git \
     ruby-gettext \
     # for locales
-    potool make \
+    potool make gettext locales \
     # for atom-feed
     rubygems ruby-dev libxml2-dev zlib1g-dev
 
 # add apache configuration
 ADD etc/apache2/sites-available /etc/apache2/sites-available
 
+# generate locales
+RUN echo en_US.UTF-8 UTF-8 >> /etc/locale.gen && locale-gen
+
 # install dudle and configure apache
 RUN cd /var/www/html && \
     git clone https://github.com/kellerben/dudle.git && \
-#    make && \
     chown www-data dudle && \
+    cd dudle && \
+    LC_ALL=en_US.utf8 make && \
     a2dissite 000-default && \
     a2ensite 001-dudle && \
     a2enmod cgid && \
