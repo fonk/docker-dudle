@@ -1,3 +1,5 @@
+THIS REPOSITORY IS NO LONGER MAINTAINED - IF YOU LIKE TO TAKE CARE OF IT, PLEASE CONTACT ME
+
 fonk-dudle
 ==========
 Setup your own dudle!
